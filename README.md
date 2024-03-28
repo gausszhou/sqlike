@@ -16,7 +16,7 @@ const users:User[] = [
 ];
 ```
 
-## group
+## groupBy
 
 ```js
 // groupBy(list, groupKey)
@@ -24,7 +24,7 @@ const groupedUsers1 = groupBy(users, 'age');
 const groupedUsers2 = groupByMultiple(users, ['age', 'city']);
 ```
 
-## sort
+## sortBy
 
 ```js
 // sortBy(list, comparator)
