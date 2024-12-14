@@ -1,12 +1,22 @@
 # sqlike
 
-## example 
+## TODO
+
+- [ ] class
+- [x] groupBy
+- [x] sort
+- [x] limit
+- [ ] where
+- [ ] join
+- [ ] Chain calls
+
+## example
 
 ```js
 // Example usage
 type User = { id: number; name: string; age: number, city: string };
 
-const users:User[] = [
+const users: User[] = [
   { id: 1, name: 'Alice', age: 20 ,city: 'New York'},
   { id: 2, name: 'Bob', age: 25 ,city: 'New York'},
   { id: 3, name: 'Charlie', age: 30, city: 'Los Angeles' },
