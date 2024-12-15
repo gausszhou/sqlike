@@ -1,4 +1,4 @@
-import { groupBy, groupByMultiple, orderBy, orderByMultiple } from "..";
+import SQLike, { groupBy, groupByMultiple, orderBy, orderByMultiple } from "..";
 import { limit } from "../modules/limit";
 
 // Example usage
@@ -13,25 +13,31 @@ const users: User[] = [
   { id: 6, name: 'Frank', age: 20, city: 'New York' },
 ];
 
+console.log('=======users');
 console.log(users);
 
 console.log('=======group1');
-const groupedUsers1 = groupBy(users, 'age');
+const groupedUsers1 = new SQLike(users).groupBy('age').value();
 console.log(groupedUsers1);
+
 console.log('=======group2');
-const groupedUsers2 = groupByMultiple(users, ['age', 'city']);
+const groupedUsers2 = new SQLike(users).groupBy(['age', 'city']).value();
 console.log(groupedUsers2);
 
 console.log('=======sort1');
-const sortedUsers1 = orderBy(users, (a, b) => a.age - b.age);
+const sortedUsers1 = new SQLike<User>(users).orderBy((a, b) => a.age - b.age).value();
 console.log(sortedUsers1);
 console.log('=======sort2');
-const sortedUsers2 = orderByMultiple(users, [
+const sortedUsers2 = new SQLike<User>(users).orderBy([
   (a, b) => a.city.localeCompare(b.city), // First sort by city
   (a, b) => a.age - b.age// Then sort by age if city is the same
-]);
+]).value();
 console.log(sortedUsers2);
 
 console.log('=======limit');
-const limitedUsers = limit(users, 3);
+const limitedUsers = new SQLike<User>(users).limit(3).value();
 console.log(limitedUsers)
+
+console.log('=======compose');
+const composeUsers = new SQLike<User>(users).orderBy((a, b) => a.age - b.age).limit(3).value();
+console.log(composeUsers); 

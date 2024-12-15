@@ -1,5 +1,5 @@
 export interface SimpleObject {
-  [key: string | number]: string | number
+  [key: string | number]: any
 }
 
 export type Comparator<T> = (a: T, b: T) => number;
