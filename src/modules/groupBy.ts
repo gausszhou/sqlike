@@ -1,4 +1,12 @@
-import { SimpleObject } from "./type";
+import { SimpleObject } from "../types";
+
+export const groupBy = <T extends SimpleObject>(arr: T[], key: string | string[]) => {  
+  if (Array.isArray(key)) {
+    return groupByMultiple(arr, key);
+  } else {
+    return groupBySingle(arr, key)
+  }
+}
 
 /**
  * 单字段分组
@@ -6,14 +14,14 @@ import { SimpleObject } from "./type";
  * @param key 
  * @returns 
  */
-export const groupBy = <T extends SimpleObject>(arr: T[], key: string) => {
+export const groupBySingle = <T extends SimpleObject>(arr: T[], key: string) => {
   const map: Record<string | number, T[]> = {};
   arr.forEach(item => {
     const groupKey = item[key as keyof typeof item];
     map[groupKey] = map[groupKey] || []
     map[groupKey].push(item)
   })
-  return map
+  return Object.values(map)
 }
 
 /**
@@ -29,5 +37,5 @@ export const groupByMultiple = <T extends SimpleObject>(arr: T[], keys: string[]
     map[groupKey] = map[groupKey] || []
     map[groupKey].push(item)
   })
-  return map
+  return Object.values(map)
 }

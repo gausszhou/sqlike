@@ -1,4 +1,4 @@
-import { groupBy, groupByMultiple, sortBy, sortByMultiple } from "..";
+import { groupBy, groupByMultiple, orderBy, orderByMultiple } from "..";
 import { limit } from "../modules/limit";
 
 // Example usage
@@ -23,10 +23,10 @@ const groupedUsers2 = groupByMultiple(users, ['age', 'city']);
 console.log(groupedUsers2);
 
 console.log('=======sort1');
-const sortedUsers1 = sortBy(users, (a, b) => a.age - b.age);
+const sortedUsers1 = orderBy(users, (a, b) => a.age - b.age);
 console.log(sortedUsers1);
 console.log('=======sort2');
-const sortedUsers2 = sortByMultiple(users, [
+const sortedUsers2 = orderByMultiple(users, [
   (a, b) => a.city.localeCompare(b.city), // First sort by city
   (a, b) => a.age - b.age// Then sort by age if city is the same
 ]);

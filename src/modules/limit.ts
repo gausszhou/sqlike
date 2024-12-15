@@ -1,3 +1,3 @@
-export const limit = <T>(arr: T[], limit: number, offset = 0) => {
-  return arr.slice(offset, limit)
+export const limit = <T>(arr: T[], count: number, offset = 0) => {
+  return arr.slice(offset, count)
 }

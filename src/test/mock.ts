@@ -1,6 +1,6 @@
-import { groupByMultiple } from "../index.ts";
+import { groupBy } from "../index.ts";
 import { limit } from "../modules/limit.ts";
-import { createDateDayList } from "../utils/date.ts";
+import { createDateDayList } from "./date.ts";
 import { createTableUI } from "./table.ts";
 import { RawRow } from "./type.ts";
 
@@ -71,10 +71,12 @@ function renderRaw(container: HTMLElement) {
 }
 
 function renderHor(container: HTMLElement, groupByList: string[]) {
+  // TODO
+  return false;
   const propList = ["event", "group", "prop1", "prop2", "prop3", "prop4"];
   const groupByMap:any = {};
   groupByList.forEach((key) => (groupByMap[key] = true));
-  const tableDataGroup = groupByMultiple(dateSet, groupByList);
+  const tableDataGroup = groupBy(dateSet, groupByList);
   const tableData: RawRow[] = [];
   Object.keys(tableDataGroup).forEach((key) => {
     const list = tableDataGroup[key];
@@ -110,11 +112,12 @@ function renderHor(container: HTMLElement, groupByList: string[]) {
 }
 
 function renderVert(container: HTMLElement, groupByList: string[]) {
+  return false;
   const propList = ["group", "prop1", "prop2", "prop3", "prop4", "date"];
   const groupByMap:any = {};
   groupByList.forEach((key) => (groupByMap[key] = true));
-  const events = Object.keys(groupByMultiple(dateSet, ["event"]));
-  const tableDataGroup = groupByMultiple(dateSet, groupByList);
+  const events = Object.keys(groupBy(dateSet, ["event"]));
+  const tableDataGroup = groupBy(dateSet, groupByList);
   const tableData: RawRow[] = [];
   Object.values(tableDataGroup).forEach((list) => {
     const first:any = list[0];
