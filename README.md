@@ -16,6 +16,14 @@ const users: User[] = [
 ];
 ```
 
+## where
+
+```ts
+console.log('=======where1');
+const filteredUsers = new SQLike(users).where(item => item.age > 25).value();
+console.log(filteredUsers);
+```
+
 ## groupBy
 
 ```ts
