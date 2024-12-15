@@ -1,14 +1,15 @@
 # sqlike
 
-## TODO
+## Todo List
 
-- [ ] class
+- [x] class
 - [x] groupBy
 - [x] sort
 - [x] limit
-- [ ] where
+- [x] where
 - [ ] join
-- [ ] Chain calls
+- [x] Chain calls
+- [ ] unit tests
 
 ## example
 
@@ -30,8 +31,8 @@ const users: User[] = [
 
 ```js
 // groupBy(list, groupKey)
-const groupedUsers1 = groupBy(users, 'age');
-const groupedUsers2 = groupByMultiple(users, ['age', 'city']);
+const groupedUsers1 =  new SQLike(users).groupBy('age').value();
+const groupedUsers2 = groupBy(users, ['age', 'city']);
 ```
 
 ## sortBy
