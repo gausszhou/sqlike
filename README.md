@@ -58,7 +58,7 @@ const limitedUsers = new SQLike<User>(users).limit(3).value();
 console.log(limitedUsers)
 ```
 
-## compose
+## Chain calls
 
 ```ts
 console.log('=======compose');
