@@ -43,14 +43,17 @@ console.log(groupedUsers2);
 
 ```ts
 console.log('=======innerJoin');
-const joinUsersAndClass = new SQLike<User>(users).innerJoin(new SQLike(classes), (a,b) => a.class_id === b.id).merge(([a, b]) => {
+const joinUsersAndClass = new SQLike<User>(users)
+.innerJoin(new SQLike(classes), (a,b) => a.class_id === b.id)
+.merge(([a, b]) => {
   return {
     ...a,
     ...b,
     id: a.id,
     class_id: b.id    
   }
-}).value()
+})
+.value()
 console.log(joinUsersAndClass);
 ```
 
