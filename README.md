@@ -76,14 +76,6 @@ const limitedUsers = new SQLike<User>(users).limit(3).value();
 console.log(limitedUsers)
 ```
 
-## chain calls
-
-```ts
-console.log('=======compose');
-const composeUsers = new SQLike<User>(users).orderBy((a, b) => a.age - b.age).limit(3).value();
-console.log(composeUsers); 
-```
-
 ## Todo List
 
 - [x] class
@@ -97,5 +89,4 @@ console.log(composeUsers);
   - [x] innerJoin
   - [ ] outerJoin
 - [x] merge
-- [x] chain calls
 - [ ] unit tests
