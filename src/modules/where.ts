@@ -1,5 +1,5 @@
-import { Filter } from "../types";
+import { WhereFunc } from "../types";
 
-export const where = <T>(arr: T[], callback: Filter<T>):T[] => {
+export const where = <T>(arr: T[], callback: WhereFunc<T>):T[] => {
   return arr.filter(item => callback(item));
 }

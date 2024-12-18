@@ -3,16 +3,15 @@
 ## example
 
 ```ts
-// Example usage
-type User = { id: number; name: string; age: number, city: string };
+type User = { id: number; name: string; age: number, city: string, gender: string };
 
 const users: User[] = [
-  { id: 1, name: 'Alice', age: 20 ,city: 'New York'},
-  { id: 2, name: 'Bob', age: 25 ,city: 'New York'},
-  { id: 3, name: 'Charlie', age: 30, city: 'Los Angeles' },
-  { id: 4, name: 'David', age: 25 ,city: 'Los Angeles'},
-  { id: 5, name: 'Ethan', age: 30 ,city: 'New York'},
-  { id: 6, name: 'Frank', age: 20 ,city: 'New York'},
+  { id: 1, name: 'Alice', age: 20, city: 'New York', gender: 'female' },
+  { id: 2, name: 'Bob', age: 25, city: 'New York' , gender: 'male' },
+  { id: 3, name: 'Charlie', age: 30, city: 'Los Angeles', gender: 'female'  },
+  { id: 4, name: 'David', age: 25, city: 'Los Angeles', gender: 'male'  },
+  { id: 5, name: 'Ethan', age: 30, city: 'New York' , gender: 'male' },
+  { id: 6, name: 'Frank', age: 20, city: 'New York', gender: 'male'  },
 ];
 ```
 
@@ -24,7 +23,11 @@ const filteredUsers = new SQLike(users).where(item => item.age > 25).value();
 console.log(filteredUsers);
 ```
 
-## groupBy
+## pick
+
+## omit
+
+## groupBy and merge
 
 ```ts
 console.log('=======group1');
@@ -34,6 +37,21 @@ console.log(groupedUsers1);
 console.log('=======group2');
 const groupedUsers2 = new SQLike(users).groupBy(['age', 'city']).value();
 console.log(groupedUsers2);
+```
+
+## innerJoin and merge
+
+```ts
+console.log('=======innerJoin');
+const joinUsersAndClass = new SQLike<User>(users).innerJoin(new SQLike(classes), (a,b) => a.class_id === b.id).merge(([a, b]) => {
+  return {
+    ...a,
+    ...b,
+    id: a.id,
+    class_id: b.id    
+  }
+}).value()
+console.log(joinUsersAndClass);
 ```
 
 ## orderBy
@@ -58,7 +76,7 @@ const limitedUsers = new SQLike<User>(users).limit(3).value();
 console.log(limitedUsers)
 ```
 
-## Chain calls
+## chain calls
 
 ```ts
 console.log('=======compose');
@@ -69,10 +87,15 @@ console.log(composeUsers);
 ## Todo List
 
 - [x] class
-- [x] groupBy
+- [x] where
+- [ ] pick
+- [ ] omit
 - [x] sort
 - [x] limit
-- [x] where
+- [x] groupBy
 - [ ] join
-- [x] Chain calls
+  - [x] innerJoin
+  - [ ] outerJoin
+- [x] merge
+- [x] chain calls
 - [ ] unit tests
